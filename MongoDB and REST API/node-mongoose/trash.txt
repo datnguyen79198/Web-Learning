@@ -1,0 +1,60 @@
+db.once('open', function() {
+    var newPromotion = Promotions({
+        name: 'Weekend Grand Buffet',
+        image: 'images/buffet.png',
+        label: 'NEW',
+        price: '$19.99',
+        description: 'Featuring...',
+    });
+
+    newPromotion.save(function(err) {
+        if (err) throw err;
+        console.log('Promotion created!');
+
+        Dishes.find({}, function(err, promotions) {
+            if (err) throw err;
+            console.log(promotions);
+
+            db.collection('promotions').drop(function() {
+                db.close();
+            });
+        });
+    });
+});
+
+db.once('open', function() {
+    var newLeader = Leaders({
+        name: 'Peter Pan',
+        image: 'images/alberto.png',
+        designation: 'Chief Blah Blah...',
+        abbr: 'CEO',
+        description: 'Our CEO, Thaliah...',
+    });
+
+    newLeader.save(function(err) {
+        if (err) throw err;
+        console.log('Leader created!');
+
+        Dishes.find({}, function(err, leaders) {
+            if (err) throw err;
+            console.log(leaders);
+
+            db.collection('leaders').drop(function() {
+                db.close();
+            });
+        });
+    });
+});
+
+
+name: 'Uthapizza_new_new',
+image: 'images/Uthapizza_new.png',
+category: 'mains',
+label: 'HOT',
+price: '$4.99',
+description: 'Test',
+comments: [{
+    rating: 2,
+    comment: 'This is fuking bad!!!',
+    author: 'Thaliah'
+}]

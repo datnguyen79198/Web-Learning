@@ -1,0 +1,19 @@
+<html>
+  <body onload="check_user_age()">
+    <h1>this is allahu alkar</h1>
+    <script>
+        function check_user_age() {
+          if (age_of_user() < 18) {
+            alert("Get out here");
+            document.location.href
+            = "https://www.facebook.com/";
+          }
+        }
+        function age_of_user() {
+          var age_text = prompt("How old are you?");
+          var age = parseInt(age_text);
+          return age;
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>the "nhat" game</title>
+  </head>
+
+  <body>
+    <script>
+        var key = Math.floor(Math.random()*100);
+        var time = 0;
+        while (true) {
+           var number_guess_text = prompt("Choose a number from 1 to 100");
+           var number_guess = parseInt(number_guess_text);
+           if (number_guess > key) {
+             alert("The number you choose too high!!!");
+             time++
+           }
+           else if (number_guess < key) {
+             alert("The number you choose too low!!!");
+             time++
+           }
+           else {
+             alert("Congratulation!!! You have found a password" + "\n\nYou spend " + time + " times to find this");
+             break;
+           }
+        }
+    </script>
+  </body>
+</html>

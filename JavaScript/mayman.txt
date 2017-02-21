@@ -1,0 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+
+import java.util.*;
+
+/**
+ *
+ * @author datnguyen
+ */
+public class mayman {
+    public static void main(String[] args) {
+      Scanner scan = new Scanner(System.in);
+      int n = scan.nextInt();
+      int m = scan.nextInt();
+      int tt = 1,res = 0;
+      while (tt < n-m) {
+        tt=tt*10+1;
+      }
+      int x=(tt-1)/10;
+      int ss=tt-x-1;
+      while (ss >= n-m) {
+          if (ss<=n-1) res++;
+          ss-=x;
+      }
+      while (tt <= n-1) {
+        if (tt*10+1 <= n-1) res+=9;
+        else {
+          int s=tt;
+          while (s <= n-1) {
+            res++;
+            s+=tt;
+          }
+        }
+        tt=tt*10+1;
+      }
+      System.out.println(res);
+    }
+}
+
