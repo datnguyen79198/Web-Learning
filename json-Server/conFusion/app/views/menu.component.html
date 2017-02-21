@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row row-content" ng-controller="MenuController">
+        <div class="col-xs-12" *ngIf="!showMenu">
+            <h3>{{message}}</h3>
+        </div>
+        <div class="col-xs-12" *ngIf="showMenu">
+            <button (click)="toggleDetails()" class="btn btn-primary pull-right btn-xs">
+                {{showDetails ? 'Hide Details' : 'Show Details'}}
+            </button>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" [class.active]="isSelected(1)">
+                    <a aria-controls="all menu" role="tab" (click)="select(1)">Menu</a>
+                </li>
+
+                <li role="presentation" [class.active]="isSelected(2)">
+                    <a aria-controls="appetizers" role="tab" (click)="select(2)">Appetizers</a>
+                </li>
+
+                <li role="presentation" [class.active]="isSelected(3)">
+                    <a aria-controls="mains" role="tab" (click)="select(3)">Mains</a>
+                </li>
+
+                <li role="presentation" [class.active]="isSelected(4)">
+                    <a aria-controls="desserts" role="tab" (click)="select(4)">Desserts</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <ul class="media-list tab-pane fade in active">
+                    <li class="media" *ngFor="let dish of dishes | menuFilter:filtText">
+                        <div class="media-left media-middle">
+                            <a (click)="gotoDetail(dish.id)">
+                                <img class="media-object img-thumbnail" src="app/{{dish.image}}" />
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">{{dish.name}}
+                                <span class="label label-danger label-xs">{{dish.label}}</span>
+                                <span class="badge">{{dish.price}}</span>
+                            </h2>
+                            <p [hidden]="!showDetails">{{dish.description}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

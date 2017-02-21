@@ -1,0 +1,82 @@
+
+    <div class="container">
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Our Lipsmacking Culinary Creations</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+                <div *ngIf="!showDish">
+                    <h3>{{message}}</h3>
+                </div>
+                <div class="media" *ngIf="showDish">
+                    <div class="media-left media-middle">
+                        <a >
+                            <img class="media-object img-thumbnail" src="app/{{dish.image}}" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{dish.name}}
+                            <span class="label label-danger label-xs">{{dish.label}}</span>
+                            <span class="badge">{{dish.price}}</span>
+                        </h2>
+                        <p>{{dish.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+                <h3 align=center>This Month's Promotions</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <div *ngIf="!showPromotion">
+                    <h3>{{promotionMessage}}</h3>
+                </div>
+                <div class="media" *ngIf="showPromotion">
+                    <div class="media-body">
+                        <h2 class="media-heading">{{promotion.name}}
+                            <span class="label label-danger label-xs">{{promotion.label}}</span>
+                            <span class="badge">{{promotion.price}}</span>
+                        </h2>
+                        <p>{{promotion.description}}</p>
+                    </div>
+                    <div class="media-right media-middle">
+                        <a ui-sref="">
+                            <img class="media-object img-thumbnail" src="app/{{promotion.image}}" />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Meet our Culinary Specialists</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+                <div *ngIf="!showLeadership">
+                    <h3>{{leadershipMessage}}</h3>
+                </div>                
+                <div class="media" *ngIf="showLeadership">
+                    <div class="media-left media-middle">
+                        <a ui-sref="">
+                            <img class="media-object img-thumbnail" src="app/{{leadership.image}}" />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{leadership.name}}
+                            <span class="label label-danger label-xs">{{leadership.designation}}</span>
+
+                        </h2>
+                        <p>{{leadership.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

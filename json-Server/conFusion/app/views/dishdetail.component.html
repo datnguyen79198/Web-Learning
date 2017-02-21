@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row row-content">
+      <div class="col-xs-12" *ngIf="!showDish">
+        <h3>{{message}}</h3>
+      </div>
+      <div class="col-xs-12" *ngIf="showDish">
+        <button class="btn btn-xs btn-primary pull-right" type="button" ui-sref="app.menu">Back to Menu</button>
+        <div class="media-left media-middle">
+            <a href="#">
+                <img class="media-object img-thumbnail" src="app\{{dish.image}}" />
+            </a>
+        </div>
+        <div class="media-body">
+            <h2 class="media-heading">{{dish.name}}
+                <span class="label label-danger label-xs">{{dish.label}}</span>
+                <span class="badge">{{dish.price}}</span>
+            </h2>
+            <p>{{dish.description}}</p>
+        </div>
+      </div>
+      
+      <div class="col-xs-9 col-xs-offset-1">
+        <p><b>Customer Comments</b> Sort by <input type="text" /></p>
+        <div *ngIf="showDish">       
+          <ul *ngFor="let comment of dish.comments"> 
+            <li class="list-unstyled">
+              <blockquote>
+                <p>{{comment.rating}} Stars</p>
+                <p>{{comment.comment}}</p>
+                <p>- {{comment.author}} {{comment.date | date}}</p>
+              </blockquote>
+            </li>
+          </ul>    
+        </div>
+      </div>     
+
+            <div class="col-xs-9 col-xs-offset-1">
+                    <ul class="list-unstyled" [hidden]="!author.valid || !comment.valid">
+                        <li>
+                          <blockquote>
+                              <p>{{mycomment.rating}} Stars</p>
+                              <p>{{mycomment.comment}}</p>
+                              <p>- {{mycomment.author}} {{mycomment.date | date}}</p>
+                          </blockquote>
+                        </li>
+                    </ul>
+                <form #commentForm="ngForm" class="form-horizontal" (ngSubmit)="submitComment()" novalidate>
+                  <div class="form-group">
+                    <label for="author" class="col-sm-2 control-label">Author</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="author" name="author" placeholder="Author" [(ngModel)]="mycomment.author" ngControl="author" #author="ngForm" required>
+
+                      <!-- check for error in firstname && user touched this input already (has error and not pristine-->
+                      <span *ngIf="!author.valid" class="help-block">
+                        Author name is required.
+                      </span>
+                    </div>
+                  </div>
+
+                    <div class="form-group">
+                       <label for="numpeople" class="col-sm-2 control-label">
+                        Number of Stars</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                            <input type="radio" name="rating" id="rating1" [(ngModel)]="mycomment.rating" value=1> 1
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="rating" id="rating2" [(ngModel)]="mycomment.rating" value=2> 2
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="rating" id="rating3" [(ngModel)]="mycomment.rating" value=3> 3
+                            </label>
+                             <label class="radio-inline">
+                                <input type="radio" name="rating" id="rating4" [(ngModel)]="mycomment.rating" value=4> 4
+                            </label>
+                             <label class="radio-inline">
+                                <input type="radio" name="rating" id="rating5" [(ngModel)]="mycomment.rating" value=5 checked> 5
+                            </label>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="comments" class="col-sm-2 control-label">Your Comments</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="12" name="comments" [(ngModel)]="mycomment.comment"  ngControl="comment" #comment="ngForm" required>
+                            </textarea>
+                         <span *ngIf="!comment.valid" class="help-block">Your comments are required.</span>
+                       </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Submit Comment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>       
+  </div>
+
+</div>
